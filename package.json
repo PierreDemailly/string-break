@@ -1,0 +1,24 @@
+{
+  "name": "string-break",
+  "version": "0.0.1",
+  "description": "Wrap words for given max columns",
+  "scripts": {
+    "test": "node --test ./test/**.test.js",
+    "lint": "eslint ./**/**.js",
+    "pkg:ok": "npx pkg-ok"
+  },
+  "main": "./index.js",
+  "keywords": [],
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "author": "PierreDemailly <pierredemailly.pro@gmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@nodesecure/eslint-config": "^1.7.0",
+    "eslint": "^8.39.0",
+    "pkg-ok": "^3.0.0"
+  }
+}
