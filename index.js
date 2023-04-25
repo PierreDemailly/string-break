@@ -1,9 +1,18 @@
 import { EOL } from "node:os";
 
+const kWinEOL = "\r\n";
+const kPosixEOL = "\n";
+
+/**
+ * Add a maximum column length to a string without breaking words (if possible).
+ * @param {string} string
+ * @param {Number} maxColLength
+ * @returns {string}
+ */
 export function stringBreak(string, maxColLength = 80) {
   let outputString = "";
 
-  const lines = string.split(EOL);
+  const lines = string.replaceAll(kWinEOL, EOL).replaceAll(kPosixEOL, EOL).split(EOL);
 
   for (const line of checkLines(lines, maxColLength)) {
     outputString += line + EOL;
