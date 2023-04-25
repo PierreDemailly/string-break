@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Wrap words for given max columns",
   "scripts": {
-    "test": "node --test ./test/**.test.js",
+    "test": "node --test test/",
     "lint": "eslint ./**/**.js",
     "pkg:ok": "npx pkg-ok"
   },
