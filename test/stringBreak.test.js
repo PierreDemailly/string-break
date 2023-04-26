@@ -59,3 +59,10 @@ test("should wrap multiple word", () => {
     `Hello${EOL}World${EOL}Hello${EOL}World${EOL}Hello${EOL}World${EOL}Hello${EOL}World`
   );
 });
+
+test("should not wrap after prohibited characters", () => {
+  assert.strictEqual(
+    stringBreak("Lorem ipsum dolor sit amet, consectetur adipcing elit.", "Lorem ipsum dolor sit amet,".length),
+    `Lorem ipsum dolor sit${EOL}amet, consectetur adipcing${EOL}elit.`
+  );
+});

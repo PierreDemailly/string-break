@@ -5,7 +5,7 @@ import { EOL } from "node:os";
 const kWinEOL = "\r\n";
 const kPosixEOL = "\n";
 const kToReplaceEOL = EOL === kWinEOL ? kPosixEOL : kWinEOL;
-const kProhibitedBreakBefore = [":", ";", ",", ".", ")", "}", "]" "?" , "!" "\"", "'"];
+const kProhibitedBreakBefore = [":", ";", ",", ".", ")", "}", "]", "?", "!", "\"", "'"];
 const kProhibitedBreakAfter = [";", "," ,"(", "[", "{"];
 
 /**
@@ -50,9 +50,10 @@ function* checkLines(lines, maxColLength) {
       }
 
       let j = i;
+
       if (line.slice(i, i + sliceLength).includes(" ")) {
         // eslint-disable-next-line max-depth
-        while (line[i] !== " " && line[i + sliceLength] !== " " && line[j + 1] !== " ") {
+        while (kProhibitedBreakAfter.includes(line[i + sliceLength - 1]) || (line[i] !== " " && line[i] !== " " && line[i + sliceLength] !== " " && line[j + 1] !== " ")) {
           sliceLength--;
           j--;
         }
