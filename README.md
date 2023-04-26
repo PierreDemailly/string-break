@@ -7,6 +7,8 @@
 
 Javascript utility function that add a maximum column length to a string without breaking words (if possible).
 
+This is **NOT** an implementation of [UNICODE LINE BREAKING ALGORITHM](http://unicode.org/reports/tr14/).
+
 ## Requirements
 
 - [Node.js](https://nodejs.org/en/) v14 or higher

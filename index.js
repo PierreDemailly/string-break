@@ -1,19 +1,31 @@
+// Import Node.js Dependencies
 import { EOL } from "node:os";
 
+// Constants
 const kWinEOL = "\r\n";
 const kPosixEOL = "\n";
 const kToReplaceEOL = EOL === kWinEOL ? kPosixEOL : kWinEOL;
+const kProhibitedBreakBefore = [":", ";", ",", ".", ")", "}", "]" "?" , "!" "\"", "'"];
+const kProhibitedBreakAfter = [";", "," ,"(", "[", "{"];
 
 /**
  * Add a maximum column length to a string without breaking words (if possible).
- * @param {string} string
+ * @param {string} text
  * @param {Number} maxColLength
  * @returns {string}
  */
-export function stringBreak(string, maxColLength = 80) {
+export function stringBreak(text, maxColLength = 80) {
+  if (typeof text !== "string") {
+    throw new TypeError(`Expected string, ${typeof text} given.`);
+  }
+
+  if (typeof maxColLength !== "number") {
+    throw new TypeError(`Expected number, ${typeof maxColLength} given.`);
+  }
+
   let outputString = "";
 
-  const lines = string.replaceAll(kToReplaceEOL, EOL).split(EOL);
+  const lines = text.replaceAll(kToReplaceEOL, EOL).split(EOL);
 
   for (const line of checkLines(lines, maxColLength)) {
     outputString += line + EOL;
